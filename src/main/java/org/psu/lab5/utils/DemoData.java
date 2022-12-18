@@ -23,24 +23,24 @@ public class DemoData implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         try {
-            /*
-             * userRepository.save(
-             * new User(null,
-             * "admin",
-             * "admin",
-             * "admin@email.com",
-             * Stream.of(Role.ADMIN, Role.USER).collect(Collectors.toSet()),
-             * null,
-             * 0));
-             * userRepository.save(
-             * new User(null,
-             * "user",
-             * "user",
-             * "user@email.com",
-             * Collections.singleton(Role.USER),
-             * null,
-             * 0));
-             */
+
+            userRepository.save(
+                    new User(null,
+                            "admin",
+                            "admin",
+                            "admin@email.com",
+                            Collections.singleton(Role.ADMIN),
+                            null,
+                            0, null, null));
+            userRepository.save(
+                    new User(null,
+                            "user",
+                            "user",
+                            "user@email.com",
+                            Collections.singleton(Role.USER),
+                            null,
+                            0, null, null));
+
         } catch (DataIntegrityViolationException e) {
 
         }
