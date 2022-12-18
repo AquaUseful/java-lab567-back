@@ -1,5 +1,6 @@
 package org.psu.lab5.model;
 
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -45,7 +46,7 @@ public class User {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Set<Role> roles;
+    private Collection<Role> roles;
 
     @OneToOne(optional = true)
     @JoinColumn(name = "file_id")
@@ -57,9 +58,9 @@ public class User {
 
     @OneToMany(orphanRemoval = true, mappedBy = "user")
     @JsonManagedReference
-    private Set<Application> applications;
+    private Collection<Application> applications;
 
     @OneToMany(orphanRemoval = true, mappedBy = "author")
     @JsonManagedReference
-    private Set<Comment> comments;
+    private Collection<Comment> comments;
 }
