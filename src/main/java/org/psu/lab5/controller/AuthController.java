@@ -1,6 +1,5 @@
 package org.psu.lab5.controller;
 
-import javax.security.auth.login.LoginException;
 import javax.validation.Valid;
 
 import org.psu.lab5.exception.UserExistsException;
@@ -36,7 +35,7 @@ public class AuthController {
     @PostMapping("register")
     public ResponseEntity<RegisterResponse> register(@RequestBody @Valid RegisterRequest request)
             throws UserExistsException {
-        final RegisterResponse resp = authService.register(request);
+        authService.register(request);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new RegisterResponse(true, ""));
     }
