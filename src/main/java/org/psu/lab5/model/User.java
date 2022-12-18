@@ -11,9 +11,11 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,4 +54,12 @@ public class User {
 
     @Column(nullable = false)
     private int loginCount;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "user")
+    @JsonManagedReference
+    private Set<Application> applications;
+
+    @OneToMany(orphanRemoval = true, mappedBy = "author")
+    @JsonManagedReference
+    private Set<Comment> comments;
 }
