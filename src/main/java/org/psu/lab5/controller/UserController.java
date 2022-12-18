@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.HttpHeaders;
 import org.psu.lab5.model.BinFile;
+import org.psu.lab5.model.Application;
+import java.util.Set;
 
 @RestController
 @RequestMapping("user")
@@ -66,6 +69,15 @@ public class UserController {
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("application")
+    public ResponseEntity<Set<Application>> getApplications() {
+        final String username = userService.authInfo().getUsername();
+        final User user = userService.getByUsername(username);
+        final Set<Application> applications = user.getApplications();
+        return ResponseEntity.ok().body(applications);
     }
 
 }
