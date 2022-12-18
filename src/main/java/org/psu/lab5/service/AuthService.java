@@ -53,7 +53,7 @@ public class AuthService {
                 request.getEmail(),
                 Collections.singleton(Role.ADMIN),
                 null,
-                0);
+                0, null, null);
         userRepository.save(newUser);
         return new RegisterResponse(true, "");
     }
