@@ -23,13 +23,18 @@ import lombok.Setter;
 public class Comment {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String content;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "author_id")
-    @JsonBackReference
     private User author;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "news_id", nullable = false)
+    @JsonBackReference
+    private News news;
+
 }
