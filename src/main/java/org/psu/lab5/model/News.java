@@ -1,5 +1,6 @@
 package org.psu.lab5.model;
 
+import java.util.Collection;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +28,7 @@ import lombok.Setter;
 public class News {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String title;
@@ -35,7 +37,7 @@ public class News {
     private String content;
 
     @Column(nullable = false)
-    private long rating;
+    private Long rating;
 
     @OneToOne(optional = true)
     @JoinColumn(name = "file_id")
@@ -43,6 +45,7 @@ public class News {
     private BinFile picture;
 
     @OneToMany(orphanRemoval = true)
-    @JoinColumn(name = "news_id", nullable = false)
-    private Set<Comment> comments;
+    @JsonManagedReference
+    private Collection<Comment> comments;
+
 }
