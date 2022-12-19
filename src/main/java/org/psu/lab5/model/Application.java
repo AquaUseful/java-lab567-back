@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 public class Application {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column(nullable = false)
     private String doctorName;
