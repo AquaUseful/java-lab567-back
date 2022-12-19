@@ -18,7 +18,7 @@ public class BinfileService {
         binFileRepository.save(newFile);
     }
 
-    public BinFile addMultipart(MultipartFile file, User user) throws IOException {
+    public BinFile addMultipart(MultipartFile file) throws IOException {
         final BinFile newBinFile = new BinFile(null, file.getContentType(), file.getBytes());
         this.add(newBinFile);
         return newBinFile;
