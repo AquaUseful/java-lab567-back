@@ -60,7 +60,7 @@ public class User {
     @JsonManagedReference
     private Collection<Application> applications;
 
-    @OneToMany(orphanRemoval = true, mappedBy = "author")
+   /*  @OneToMany(orphanRemoval = true, mappedBy = "author")
     @JsonManagedReference
-    private Collection<Comment> comments;
+    private Collection<Comment> comments;*/
 }
