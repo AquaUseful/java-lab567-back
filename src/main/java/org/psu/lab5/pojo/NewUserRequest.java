@@ -1,7 +1,5 @@
 package org.psu.lab5.pojo;
 
-import java.util.Collection;
-
 import javax.validation.constraints.NotBlank;
 
 import org.psu.lab5.model.Role;
