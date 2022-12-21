@@ -2,6 +2,7 @@ package org.psu.lab5.service;
 
 import org.apache.catalina.connector.Request;
 import org.psu.lab5.authentication.JwtAuthentication;
+import org.psu.lab5.exception.ResourceNotFoundException;
 import org.psu.lab5.exception.UserExistsException;
 import org.psu.lab5.model.User;
 import org.psu.lab5.pojo.RegisterRequest;
@@ -27,7 +28,7 @@ public class UserService {
 
     public User getByUsername(String username) {
         return userRepository.getByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
     }
 
     public Collection<User> getAll() {
@@ -81,6 +82,10 @@ public class UserService {
                 0,
                 null);
         this.save(newUser);
+    }
+
+    public void deleteByUsername(String username) {
+        userRepository.deleteByUsername(username);
     }
 
 }
