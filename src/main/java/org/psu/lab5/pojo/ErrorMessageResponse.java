@@ -7,6 +7,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public class LoginErrorResponse {
+public class ErrorMessageResponse {
     private final String message;
 }
