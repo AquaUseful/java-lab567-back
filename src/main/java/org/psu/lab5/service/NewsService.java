@@ -28,7 +28,7 @@ public class NewsService {
 
     public void newNews(@Valid NewNewsRequest request) throws IOException {
         final BinFile picture = binfileService.addMultipart(request.getPicture());
-        final News news = new News(null, request.getTitle(), request.getContent(), 0L, picture, null);
+        final News news = new News(null, request.getTitle(), request.getContent(), 0L, picture);
         this.save(news);
     }
 

@@ -1,7 +1,6 @@
 package org.psu.lab5.model;
 
 import java.util.Collection;
-import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -59,8 +58,4 @@ public class User {
     @OneToMany(orphanRemoval = true, mappedBy = "user")
     @JsonManagedReference
     private Collection<Application> applications;
-
-   /*  @OneToMany(orphanRemoval = true, mappedBy = "author")
-    @JsonManagedReference
-    private Collection<Comment> comments;*/
 }

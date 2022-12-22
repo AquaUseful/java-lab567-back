@@ -8,11 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -41,11 +39,5 @@ public class News {
 
     @OneToOne(optional = true)
     @JoinColumn(name = "file_id")
-    @JsonIgnore
     private BinFile picture;
-
-    @OneToMany(orphanRemoval = true)
-    @JsonManagedReference
-    private Collection<Comment> comments;
-
 }
