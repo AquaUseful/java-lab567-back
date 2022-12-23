@@ -1,18 +1,18 @@
 package org.psu.lab5.service;
 
-import org.apache.catalina.connector.Request;
 import org.psu.lab5.authentication.JwtAuthentication;
 import org.psu.lab5.exception.ResourceNotFoundException;
 import org.psu.lab5.exception.UserExistsException;
 import org.psu.lab5.model.User;
-import org.psu.lab5.pojo.RegisterRequest;
 import org.psu.lab5.pojo.NewUserRequest;
+import org.psu.lab5.model.Role;
 import org.psu.lab5.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.stream.Stream;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -63,8 +63,9 @@ public class UserService {
             user.setPassword(patch.getPassword());
         }
         if (patch.getRole() != null) {
-            user.setRoles(Collections.singleton(patch.getRole()));
+            user.setRole(patch.getRole());
         }
+
         this.save(user);
     }
 
@@ -75,17 +76,20 @@ public class UserService {
         final User newUser = new User(
                 null,
                 request.getUsername(),
-                request.getEmail(),
                 request.getPassword(),
-                Collections.singleton(request.getRole()),
+                request.getEmail(),
+                request.getRole(),
                 null,
                 0,
                 null);
         this.save(newUser);
     }
 
-    public void deleteByUsername(String username) {
-        userRepository.deleteByUsername(username);
+    public void deleteById(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new ResourceNotFoundException("Пользователь не существует");
+        }
+        userRepository.deleteById(userId);
     }
 
 }

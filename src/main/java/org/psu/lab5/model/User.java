@@ -41,11 +41,8 @@ public class User {
     @Column(nullable = false)
     private String email;
 
-    @ElementCollection(targetClass = Role.class)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Collection<Role> roles;
+    private Role role;
 
     @OneToOne(optional = true)
     @JoinColumn(name = "file_id")

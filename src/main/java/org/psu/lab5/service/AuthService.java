@@ -51,7 +51,7 @@ public class AuthService {
                 request.getUsername(),
                 request.getPassword(),
                 request.getEmail(),
-                Collections.singleton(Role.USER),
+                Role.USER,
                 null,
                 0, null);
         userRepository.save(newUser);

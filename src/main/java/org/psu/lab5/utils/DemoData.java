@@ -33,7 +33,7 @@ public class DemoData implements ApplicationRunner {
                     "user",
                     "user",
                     "user@email.com",
-                    Collections.singleton(Role.USER),
+                    Role.USER,
                     null,
                     0, null);
             userRepository.save(testUser);
@@ -42,7 +42,7 @@ public class DemoData implements ApplicationRunner {
                     "admin",
                     "admin",
                     "admin@email.com",
-                    Collections.singleton(Role.ADMIN),
+                    Role.ADMIN,
                     null,
                     0, null));
 

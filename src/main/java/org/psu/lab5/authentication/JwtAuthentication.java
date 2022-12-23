@@ -1,6 +1,7 @@
 package org.psu.lab5.authentication;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Set;
 
 import org.psu.lab5.model.Role;
@@ -19,7 +20,7 @@ public class JwtAuthentication implements Authentication {
     private boolean authenticated;
 
     private String username;
-    private Set<Role> roles;
+    private Role role;
 
     @Override
     public String getName() {
@@ -28,7 +29,7 @@ public class JwtAuthentication implements Authentication {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return Collections.singleton(role);
     }
 
     @Override

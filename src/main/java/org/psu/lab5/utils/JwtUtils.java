@@ -48,7 +48,7 @@ public class JwtUtils {
                 .setSubject(user.getUsername())
                 .setExpiration(expiration)
                 .signWith(this.jwtSecret)
-                .claim("roles", user.getRoles())
+                .claim("role", user.getRole())
                 .claim("username", user.getUsername())
                 .compact();
     }
@@ -75,15 +75,16 @@ public class JwtUtils {
 
     public static JwtAuthentication generateAuth(@NonNull Claims claims) {
         JwtAuthentication jwtAuth = new JwtAuthentication();
-        jwtAuth.setRoles(extractRoles(claims));
+        jwtAuth.setRole(extractRole(claims));
         jwtAuth.setUsername(claims.get("username", String.class));
         return jwtAuth;
 
     }
 
-    private static Set<Role> extractRoles(@NonNull Claims claims) {
-        List<String> roles = claims.get("roles", List.class);
-        return roles.stream().map(Role::valueOf).collect(Collectors.toSet());
+    private static Role extractRole(@NonNull Claims claims) {
+        final String roleName = claims.get("role", String.class);
+        final Role role = Role.valueOf(roleName);
+        return role;
     }
 
 }
