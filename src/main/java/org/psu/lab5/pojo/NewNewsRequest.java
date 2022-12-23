@@ -15,6 +15,5 @@ public class NewNewsRequest {
     private String title;
     @NotBlank(message = "Пустое содержание новости!")
     private String content;
-    @NotNull(message = "Не прикреплено изображение!")
     private MultipartFile picture;
 }
