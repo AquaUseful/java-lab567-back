@@ -10,7 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class NewUserRequest {
-    @NotBlank(message = "Пустое имя!")
     private String username;
     @NotBlank(message = "Пустой email!")
     private String email;
