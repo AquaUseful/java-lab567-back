@@ -111,7 +111,7 @@ public class UserController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PatchMapping("/{username}")
     public ResponseEntity<Null> patchUser(@PathVariable("username") String username,
-            @RequestBody NewUserRequest patch) {
+            @RequestBody @Valid NewUserRequest patch) {
         userService.applyPatchByUsername(username, patch);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
@@ -132,9 +132,9 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @DeleteMapping(path = "{username}")
-    public ResponseEntity<Null> deleteUser(@PathVariable("username") String username) {
-        userService.deleteByUsername(username);
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<Null> deleteUser(@PathVariable("id") Long id) {
+        userService.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
