@@ -31,6 +31,7 @@ public class SecurityConfiguration {
                                 .antMatchers("/time").permitAll()
                                 .antMatchers("/news").permitAll()
                                 .antMatchers("/news/**").permitAll()
+                                .antMatchers("/file/*").permitAll()
                                 .anyRequest().authenticated()
                                 .and()
                                 .addFilterAfter(jwtFilter, UsernamePasswordAuthenticationFilter.class))

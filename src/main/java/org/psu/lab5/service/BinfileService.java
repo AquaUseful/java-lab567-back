@@ -2,7 +2,6 @@ package org.psu.lab5.service;
 
 import java.io.IOException;
 
-import org.psu.lab5.model.User;
 import org.psu.lab5.model.BinFile;
 import org.psu.lab5.repository.BinFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,4 +22,8 @@ public class BinfileService {
         this.add(newBinFile);
         return newBinFile;
     };
+
+    public BinFile getById(Long id) {
+        return binFileRepository.getReferenceById(id);
+    }
 }
