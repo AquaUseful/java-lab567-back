@@ -1,7 +1,6 @@
 package org.psu.lab5.pojo;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.web.multipart.MultipartFile;
 
