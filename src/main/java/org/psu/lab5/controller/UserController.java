@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.validation.Valid;
 import javax.validation.constraints.Null;
 import org.psu.lab5.model.User;
+import org.psu.lab5.pojo.ApplicationPatchRequest;
 import org.psu.lab5.pojo.NewApplicationRequest;
 import org.psu.lab5.pojo.NewUserRequest;
 import org.psu.lab5.pojo.RegisterResponse;
@@ -99,6 +100,21 @@ public class UserController {
         final User user = userService.getByUsername(username);
         applicationService.addApplicationForUser(user, request);
         return ResponseEntity.status(HttpStatus.CREATED).body(null);
+    }
+
+    @PreAuthorize("hasAuthority('USER')")
+    @PatchMapping(path = "/self/application/{id}")
+    public ResponseEntity<Null> patchApplication(@PathVariable("id") Long applicationId,
+            @ModelAttribute @Valid ApplicationPatchRequest patch) throws IOException {
+        applicationService.patchApplicationById(applicationId, patch);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
+    @PreAuthorize("hasAuthority('USER')")
+    @DeleteMapping(path = "/self/application/{id}")
+    public ResponseEntity<Null> patchApplication(@PathVariable("id") Long applicationId) {
+        applicationService.deleteById(applicationId);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
