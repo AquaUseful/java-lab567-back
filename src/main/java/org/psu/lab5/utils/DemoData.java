@@ -46,6 +46,16 @@ public class DemoData implements ApplicationRunner {
                     null,
                     0, null));
 
+            userRepository.save(new User(
+                    null,
+                    "editor",
+                    "editor",
+                    "editor@mail.com",
+                    Role.EDITOR,
+                    null,
+                    0,
+                    null));
+
             News testNews = new News(
                     null,
                     "Тестовое название",
