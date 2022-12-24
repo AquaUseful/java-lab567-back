@@ -33,10 +33,10 @@ public class AuthService {
             throws UserNotFoundException, WrongPasswordException {
         User user = userRepository.getByUsername(request.getUsername())
                 .orElseThrow(() -> new UserNotFoundException());
-        user.setLoginCount(user.getLoginCount() + 1);
-        userRepository.save(user);
         if (user.getPassword().equals(request.getPassword())) {
             final String token = jwtUtils.generate(user);
+            user.setLoginCount(user.getLoginCount() + 1);
+            userRepository.save(user);
             return new LoginResponse(token);
         } else {
             throw new WrongPasswordException();
