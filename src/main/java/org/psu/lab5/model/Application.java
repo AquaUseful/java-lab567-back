@@ -35,7 +35,6 @@ public class Application {
 
     @OneToOne(optional = true)
     @JoinColumn(name = "file_id")
-    @JsonIgnore
     private BinFile attachment;
 
     @ManyToOne(optional = false)
