@@ -75,4 +75,10 @@ public class NewsController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
     }
 
+    @PostMapping(path = "/{id}/like")
+    public ResponseEntity<Null> postLike(@PathVariable("id") Long id) {
+        newsService.likeById(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
 }

@@ -70,4 +70,10 @@ public class NewsService {
         newsRepository.save(news);
     }
 
+    public void likeById(Long id) {
+        News news = this.getById(id);
+        news.setRating(news.getRating() + 1);
+        newsRepository.save(news);
+    }
+
 }
